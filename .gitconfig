@@ -1,0 +1,17 @@
+[user]
+	name = Andrew Zigerelli
+	email = andrewzigerelli@users.noreply.github.com
+[core]
+	editor = vim
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[merge]
+        tool = vimdiff
+        conflictstyle = diff3
+[mergetool]
+        prompt = false
