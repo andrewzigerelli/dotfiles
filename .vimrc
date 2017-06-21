@@ -92,3 +92,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "Tab for buffer switch
 :nnoremap <Tab> :bnext<CR>
 :nnoremap <S-Tab> :bprevious<CR>
+
+"for buffer switch, turn off need to save to switch buffers
+set hidden
