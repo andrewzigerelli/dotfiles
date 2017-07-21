@@ -66,13 +66,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
+Plug 'raphamorim/lucario'
 call plug#end()
 filetype plugin indent on
 
 
 "colors
 set background=dark
-colorscheme seoul256
+colorscheme lucario
+"colorscheme seoul256
 "colorscheme base16-solarized-dark
 "colorscheme base16-atelierseaside
 "set background=dark
