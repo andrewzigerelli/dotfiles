@@ -72,7 +72,7 @@ filetype plugin indent on
 
 
 "colors
-colorscheme lucario
+"colorscheme lucario
 set background=dark
 "colorscheme seoul256
 "colorscheme base16-solarized-dark
