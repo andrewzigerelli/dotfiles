@@ -61,6 +61,7 @@ Plug 'tacahiroy/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/seoul256.vim'
+Plug 'tpope/vim-obsession'
 "FZF stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
