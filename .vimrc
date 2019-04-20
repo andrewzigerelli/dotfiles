@@ -46,8 +46,20 @@ if &t_Co > 1
 	syntax enable
 endif
 
+"key remaps
 inoremap jk <ESC>
 vnoremap jk <ESC>
+"for autocomplete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+"Tab for buffer switch
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
+:nnoremap <C-F> :LspDocumentFormat<CR>
+
+
 
 call plug#begin('~/.vim/plugged')
 "My Plugs
@@ -62,14 +74,46 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/seoul256.vim'
 Plug 'tpope/vim-obsession'
+Plug 'lervag/vimtex'
+Plug 'rhysd/vim-grammarous'
 "FZF stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'raphamorim/lucario'
+
+"autocompletions stuff
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanolsonx/vim-lsp-python'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'fisadev/vim-isort'
 call plug#end()
 filetype plugin indent on
+
+" can we do python?
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+" C++ IDE stuff
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+
+
 
 
 "colors
@@ -92,9 +136,11 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"Tab for buffer switch
-:nnoremap <Tab> :bnext<CR>
-:nnoremap <S-Tab> :bprevious<CR>
 
 "for buffer switch, turn off need to save to switch buffers
 set hidden
+
+"for latex
+let g:tex_conceal = ""
+let g:tex_flavor='latex'
+
