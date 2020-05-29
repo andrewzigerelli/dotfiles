@@ -57,8 +57,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 :nnoremap <Tab> :bnext<CR>
 :nnoremap <S-Tab> :bprevious<CR>
 
-:nnoremap <C-F> :LspDocumentFormat<CR>
-
+:nnoremap <C-F> :Isort<CR> :LspDocumentFormat<CR>
+:nnoremap <C-N> :LspNextDiagnostic<CR>
 
 
 call plug#begin('~/.vim/plugged')
@@ -86,32 +86,46 @@ Plug 'raphamorim/lucario'
 "autocompletions stuff
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'ryanolsonx/vim-lsp-python'
+"Plug 'ryanolsonx/vim-lsp-python'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'fisadev/vim-isort'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 filetype plugin indent on
 
-" can we do python?
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+
+" error status
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_semantic_enabled = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_settings = {
+\  'clangd': {'cmd': ['clangd']},
+\}
+"set pyls error log settings
+"let g:lsp_settings = {
+"\  'pyls': {'cmd': ['pyls', '-vvv', '--log-file', '/tmp/pyls.log']},
+"\}
+
+
+"if executable('pyls')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'pyls',
+"        \ 'cmd': {server_info->['pyls', '--verbose', '--log-file', '/tmp/pyls-log.txt']},
+"        \ 'whitelist': ['python']
+"        \ })
+"endif
+"
 
 " C++ IDE stuff
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-endif
-
+"if executable('clangd')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'clangd',
+"        \ 'cmd': {server_info->['clangd']},
+"        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"        \ })
+"endif
+"
 
 
 
@@ -144,3 +158,8 @@ set hidden
 let g:tex_conceal = ""
 let g:tex_flavor='latex'
 
+let g:lsp_log_verbose = 2
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
+
+" for asyncomplete.vim log
+let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
