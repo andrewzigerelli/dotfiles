@@ -97,7 +97,7 @@ filetype plugin indent on
 
 " error status
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_semantic_enabled = 1
+"let g:lsp_semantic_enabled = 1
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_settings = {
 \  'clangd': {'cmd': ['clangd']},
@@ -163,3 +163,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 " for asyncomplete.vim log
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
+"remove preview
+set completeopt-=preview
+
+
