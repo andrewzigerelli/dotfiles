@@ -82,6 +82,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'raphamorim/lucario'
+Plug 'tpope/vim-dispatch'
 
 "autocompletions stuff
 Plug 'prabirshrestha/async.vim'
@@ -165,5 +166,3 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 "remove preview
 set completeopt-=preview
-
-
